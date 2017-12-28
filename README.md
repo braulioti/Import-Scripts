@@ -3,6 +3,7 @@
 
 [![Twitter: @braulio_info](https://img.shields.io/badge/contact-@braulio_info-blue.svg?style=flat)](https://twitter.com/braulio_info)
 [![Build Status](https://travis-ci.org/braulioti/Import-Scripts.svg?branch=master)](https://travis-ci.org/braulioti/Import-Scripts)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8d587cef062549b9af40f1d3c1c74c0d)](https://www.codacy.com/app/braulioti/Import-Scripts?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=braulioti/Import-Scripts&amp;utm_campaign=Badge_Grade)
 
 Import scritps is a simple project for execute SQL Scripts. This project basicly import a script
 file, crop by ";" and execute in database. Import Scripts is  
