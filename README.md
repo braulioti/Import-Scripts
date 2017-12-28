@@ -2,6 +2,7 @@
 ### Simple project for import database scripts
 
 [![Twitter: @braulio_info](https://img.shields.io/badge/contact-@braulio_info-blue.svg?style=flat)](https://twitter.com/braulio_info)
+[![Build Status](https://travis-ci.org/braulioti/Import-Scripts.svg?branch=master)](https://travis-ci.org/braulioti/Import-Scripts)
 
 Import scritps is a simple project for execute SQL Scripts. This project basicly import a script
 file, crop by ";" and execute in database. Import Scripts is  
