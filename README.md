@@ -13,6 +13,7 @@ Stay up to date with the latest release and announcements on Twitter:
 
 ## Changelog
 
+- [0.2.0 Fixed 0.1.0 version bugs](https://github.com/braulioti/Import-Scripts)
 - [0.1.0 Import and execute script files for PostgreSQL](https://github.com/braulioti/Import-Scripts)
 
 ## Versioning
@@ -41,5 +42,3 @@ For more information on SemVer, please visit http://semver.org.
 ### For import script file
 `java -jar import-scripts-0.2.0.jar host:port/database username password script_file`
 
-### For versioning folder
-`java -jar import-scripts-0.2.0.jar folder host:port/database username password folder`
