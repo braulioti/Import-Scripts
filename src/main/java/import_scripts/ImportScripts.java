@@ -14,14 +14,22 @@ public class ImportScripts {
 	
     public static void main(String[] args) {
         if (args.length > 0) {
-        	try {	
-	            Connection con = loadConnection(args[0], args[1], args[2]);
-	            List<String> lines = loadLines(args[3]);
-	            
-	            for (int i=0; i<lines.size(); i++) {
-		            Statement st = con.createStatement();
-		            st.execute(lines.get(i));
-	            }
+        	try {
+        		if (args[0].toLowerCase().equals("folder")) {
+        			Versioning versioning = new Versioning();
+        			versioning.loadConfigFile(args[4]);
+
+					Connection con = loadConnection(args[1], args[2], args[3]);
+					versioning.setConnection(con);
+				} else {
+					Connection con = loadConnection(args[0], args[1], args[2]);
+					List<String> lines = loadLines(args[3]);
+
+					for (int i=0; i<lines.size(); i++) {
+						Statement st = con.createStatement();
+						st.execute(lines.get(i));
+					}
+				}
         	} catch(Exception e) {
     			e.printStackTrace();        		
         	}
@@ -48,7 +56,7 @@ public class ImportScripts {
 	      	return null;
 		}
     }
-    
+
     private static List<String> loadLines(String filename) throws IOException {
     	BufferedReader br = new BufferedReader(new FileReader(filename));
     	try {
@@ -68,11 +76,9 @@ public class ImportScripts {
     	    
     	    for (int i=0; i<arrayLines.length; i++) {
     	    	lineAux.append(" ").append(arrayLines[i].trim());
-    	    	if (arrayLines[i].trim().length() > 0) {
-    	    		if (arrayLines[i].trim().substring(arrayLines[i].trim().length()-1, arrayLines[i].trim().length()).equals(";")) {
+    	    	if ((arrayLines[i].trim().length() > 0) && (arrayLines[i].trim().substring(arrayLines[i].trim().length()-1, arrayLines[i].trim().length()).equals(";"))) {
     	    			arrayAux.add(lineAux.toString());
     	    			lineAux = new StringBuilder();
-    	    		}
     	    	}
     	    }
     	    
