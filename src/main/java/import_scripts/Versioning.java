@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,5 +46,28 @@ public class Versioning {
 
     public void setConnection(Connection con) {
         this.con = con;
+    }
+
+    public void createVersionTable() {
+
+        String query = "SELECT COUNT(1) AS isVersion FROM pg_catalog.pg_tables WHERE tablename = 'tb_version';";
+        try {
+            Statement st = this.con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            if (rs.next()) {
+                System.out.println(rs.getInt("isVersion"));
+                if (rs.getInt("isVersion") == 0) {
+                    query =
+                            "CREATE TABLE public.tb_version ( " +
+                            "id          SERIAL NOT NULL, " +
+                            "script_file VARCHAR(40), " +
+                            "exec_date   TIMESTAMP NOT NULL DEFAULT NOW(), " +
+                            "CONSTRAINT  pk_tb_version PRIMARY KEY (id) );";
+                    st.execute(query);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

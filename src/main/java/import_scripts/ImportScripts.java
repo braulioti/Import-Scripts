@@ -21,6 +21,7 @@ public class ImportScripts {
 
 					Connection con = loadConnection(args[1], args[2], args[3]);
 					versioning.setConnection(con);
+					versioning.createVersionTable();
 				} else {
 					Connection con = loadConnection(args[0], args[1], args[2]);
 					List<String> lines = loadLines(args[3]);
