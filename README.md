@@ -1,4 +1,4 @@
-# [ImportScripts v0.1.0](http://braulioti.com.br)
+# [ImportScripts v0.1.0](https://github.com/braulioti/Import-Scripts)
 ### Simple project for import database scripts
 
 [![Twitter: @braulio_info](https://img.shields.io/badge/contact-@braulio_info-blue.svg?style=flat)](https://twitter.com/braulio_info)
@@ -12,6 +12,8 @@ Stay up to date with the latest release and announcements on Twitter:
 [@braulio_info](http://twitter.com/braulio_info).
 
 ## Changelog
+
+- [0.1.0 Import and execute script files for PostgreSQL](https://github.com/braulioti/Import-Scripts)
 
 ## Versioning
 
