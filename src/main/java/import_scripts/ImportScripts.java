@@ -3,7 +3,6 @@ package import_scripts;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class ImportScripts { 
 	
@@ -12,7 +11,7 @@ public class ImportScripts {
 
         if (args.length > 0) {
         	try {
-        		if (args[0].toLowerCase().equals("folder")) {
+        		if (args[0].equalsIgnoreCase("folder")) {
         			Versioning versioning = new Versioning();
         			versioning.loadConfigFile(args[4]);
 
@@ -21,13 +20,10 @@ public class ImportScripts {
 					versioning.createVersionTable();
 				} else {
 					Connection con = loadConnection(args[0], args[1], args[2]);
+					fileImport.setConnection(con);
 					fileImport.loadLines(args[3]);
-
-					for (int i=0; i<fileImport.getLines().size(); i++) {
-						Statement st = con.createStatement();
-						st.execute(fileImport.getLines().get(i));
-					}
-				}
+					fileImport.executeScript();
+        		}
         	} catch(Exception e) {
     			e.printStackTrace();        		
         	}
@@ -39,13 +35,10 @@ public class ImportScripts {
 
         try {
 			Class.forName(driver);
-	        Connection con = null;
 	        StringBuilder url = new StringBuilder();
 	        url.append("jdbc:postgresql://").append(connection);
-	        
-			con = (Connection) DriverManager.getConnection(url.toString(), user, password);
 
-			return con;
+            return DriverManager.getConnection(url.toString(), user, password);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 	      	return null;
