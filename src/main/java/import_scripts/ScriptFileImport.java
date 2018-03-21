@@ -29,7 +29,7 @@ public class ScriptFileImport {
             String everything = sb.toString();
 
             String[] arrayLines = everything.split("\n");
-            this.lines = new ArrayList<String>();
+            this.lines = new ArrayList<>();
             StringBuilder lineAux = new StringBuilder();
 
             for (int i=0; i<arrayLines.length; i++) {

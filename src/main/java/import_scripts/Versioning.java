@@ -55,16 +55,14 @@ public class Versioning {
         try {
             Statement st = this.con.createStatement();
             ResultSet rs = st.executeQuery(query);
-            if (rs.next()) {
-                if (rs.getInt("isVersion") == 0) {
-                    query =
-                            "CREATE TABLE public.tb_version ( " +
-                            "id          SERIAL NOT NULL, " +
-                            "script_file VARCHAR(40), " +
-                            "exec_date   TIMESTAMP NOT NULL DEFAULT NOW(), " +
-                            "CONSTRAINT  pk_tb_version PRIMARY KEY (id) );";
-                    st.execute(query);
-                }
+            if (rs.next() && rs.getInt("isVersion") == 0) {
+                query =
+                        "CREATE TABLE public.tb_version ( " +
+                        "id          SERIAL NOT NULL, " +
+                        "script_file VARCHAR(40), " +
+                        "exec_date   TIMESTAMP NOT NULL DEFAULT NOW(), " +
+                        "CONSTRAINT  pk_tb_version PRIMARY KEY (id) );";
+                st.execute(query);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -80,21 +78,19 @@ public class Versioning {
             try {
                 Statement st = this.con.createStatement();
                 ResultSet rs = st.executeQuery(sb.toString());
-                if (rs.next()) {
-                    if (rs.getInt("executed") == 0) {
-                        sb = new StringBuilder();
-                        sb.append(this.directory).append("/").append(item);
+                if (rs.next() && (rs.getInt("executed") == 0)) {
+                    sb = new StringBuilder();
+                    sb.append(this.directory).append("/").append(item);
 
-                        ScriptFileImport fileImport = new ScriptFileImport();
-                        fileImport.setConnection(this.con);
-                        fileImport.loadLines(sb.toString().trim());
-                        fileImport.executeScript();
+                    ScriptFileImport fileImport = new ScriptFileImport();
+                    fileImport.setConnection(this.con);
+                    fileImport.loadLines(sb.toString().trim());
+                    fileImport.executeScript();
 
-                        sb = new StringBuilder();
-                        sb.append("INSERT INTO public.tb_version (script_file) VALUES ('");
-                        sb.append(item.trim()).append("');");
-                        st.execute(sb.toString());
-                    }
+                    sb = new StringBuilder();
+                    sb.append("INSERT INTO public.tb_version (script_file) VALUES ('");
+                    sb.append(item.trim()).append("');");
+                    st.execute(sb.toString());
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
