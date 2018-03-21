@@ -49,7 +49,6 @@ public class Versioning {
     }
 
     public void createVersionTable() {
-
         String query = "SELECT COUNT(1) AS isVersion FROM pg_catalog.pg_tables WHERE tablename = 'tb_version';";
         try {
             Statement st = this.con.createStatement();
