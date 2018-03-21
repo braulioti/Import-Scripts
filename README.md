@@ -1,4 +1,4 @@
-# [ImportScripts v0.3.0-rc](https://github.com/braulioti/Import-Scripts)
+# [ImportScripts v1.0.0](https://github.com/braulioti/Import-Scripts)
 ### Simple project for import database scripts
 
 [![Twitter: @braulio_info](https://img.shields.io/badge/contact-@braulio_info-blue.svg?style=flat)](https://twitter.com/braulio_info)
@@ -13,13 +13,11 @@ Stay up to date with the latest release and announcements on Twitter:
 
 ## Changelog
 
-- [0.3.0-rc Created scripts for versioning database](https://github.com/braulioti/Import-Scripts)
-- [0.2.0 Fixed 0.1.0 version bugs](https://github.com/braulioti/Import-Scripts)
-- [0.1.0 Import and execute script files for PostgreSQL](https://github.com/braulioti/Import-Scripts)
+- [1.0.0 Versioning PostgreSQL database files using script list](https://github.com/braulioti/Import-Scripts)
 
 ## Versioning
 
-BF Fonts will be maintained under the Semantic Versioning guidelines as much as possible.
+Import Scripts will be maintained under the Semantic Versioning guidelines as much as possible.
 Releases will be numbered with the following format:
 
 `<major>.<minor>.<patch>`
@@ -44,4 +42,7 @@ For more information on SemVer, please visit http://semver.org.
 `java -jar import-scripts-0.2.0.jar host:port/database username password script_file`
 
 ### For versioning folder
+
+- create `files.conf` file with all scripts files in execution order
+
 `java -jar import-scripts-0.2.0.jar folder host:port/database username password folder`
