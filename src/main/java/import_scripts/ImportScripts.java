@@ -18,6 +18,7 @@ public class ImportScripts {
 					Connection con = loadConnection(args[1], args[2], args[3]);
 					versioning.setConnection(con);
 					versioning.createVersionTable();
+					versioning.executeScripts();
 				} else {
 					Connection con = loadConnection(args[0], args[1], args[2]);
 					fileImport.setConnection(con);

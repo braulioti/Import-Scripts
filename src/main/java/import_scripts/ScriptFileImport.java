@@ -28,7 +28,7 @@ public class ScriptFileImport {
             }
             String everything = sb.toString();
 
-            String[] arrayLines = everything.split("\r\n");
+            String[] arrayLines = everything.split("\n");
             this.lines = new ArrayList<String>();
             StringBuilder lineAux = new StringBuilder();
 
